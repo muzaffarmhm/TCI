@@ -9,8 +9,9 @@
 <body>
     <h1>All Profiles</h1>
     <% result.forEach((el) => { %>
-        <p><%= el.name %> - <%= el.dob.toString().slice(4,16) %> - <strong><%= el.status %></strong></p>
+        <p><a href="/display/<%=el.id%>"><%= el.name %></a> - <%= el.dob.toString().slice(4,16) %> - <strong><%= el.status %></strong></p>
     <%}) %> 
     <a href="/paused">Paused Profiles</a>
+    <a href="/new">Create a new profile</a>
 </body>
 </html>

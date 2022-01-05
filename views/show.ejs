@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <p>
+       <strong>Profile name: </strong><%= result[0].name %> <br>
+       <strong>Date of birth: </strong><%= result[0].dob.toString().slice(4,16) %> <br>
+        <strong>Status: </strong><%= result[0].status %>
+   </p>
+   <form action="/<%= result[0].id %>/toggle/<%=result[0].status%>?_method=PUT" method="post">
+        <% if(result[0].status == 'Active' ) {%>
+        <input type="submit" value="Pause">
+        <%} else {%>
+        <input type="submit" value="Activate">
+        <%}%>
+    </form> 
+</body>
+</html>

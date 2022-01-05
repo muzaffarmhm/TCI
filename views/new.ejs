@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Create a new profile</h1>
+    <form method="post" action="/new">
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name">
+        <label for="dob">Date of birth:</label>
+        <input type="date" name="dob" id="dob">
+        <label for="status">Status:</label>
+         <select name="status" id="status">
+            <option value="Active">Active</option>
+            <option value="Paused">Paused</option>
+        </select>
+<button>Create a new profile</button>
+    </form>
+    <a href="/">All profiles</a>
+</body>
+</html>
