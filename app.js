@@ -23,6 +23,7 @@ db.connect((err) => {
     console.log('Mysql Connected...');
 })
 
+//display list of profiles
 app.get('/',(req,res)=>{
     db.query('SELECT * FROM profiles',(err,result)=>{
         if(err) throw err;
@@ -32,9 +33,13 @@ app.get('/',(req,res)=>{
     })
 })
 
+//Render form to add new profile
+
 app.get('/new',(req,res)=>{
     res.render('new');
 })
+
+//Add new profile to database
 
 app.post('/new',(req,res)=>{
     const {name,dob,status} = req.body;
@@ -44,6 +49,8 @@ app.post('/new',(req,res)=>{
 })
 })
 
+//Rendering pofiles which are in Paused status
+
 app.get('/paused',(req,res)=>{
     db.query('SELECT * FROM profiles WHERE status = "paused"',(err,result)=>{
         if(err) throw err;
@@ -52,6 +59,8 @@ app.get('/paused',(req,res)=>{
         })
     })
 })
+
+//Displaying seperate profile
 
 app.get('/display/:id',(req,res)=>{
     let id = req.params.id;
@@ -63,6 +72,8 @@ app.get('/display/:id',(req,res)=>{
     })
 })
 
+//Updating profile status
+
 app.put('/:id/toggle/:status',(req,res)=>{
     const id = req.params.id;
     let status = req.params.status;
@@ -73,6 +84,16 @@ app.put('/:id/toggle/:status',(req,res)=>{
     }
     
      db.query('UPDATE profiles SET status = ? WHERE id = ?',[status,id],(err,result)=>{
+        if(err) throw err;
+        res.redirect('/');
+    })
+})
+
+//Deleting profile
+
+app.delete('/delete/:id',(req,res)=>{
+    const id = req.params.id;
+    db.query('DELETE FROM profiles WHERE id = ?',[id],(err,result)=>{
         if(err) throw err;
         res.redirect('/');
     })
